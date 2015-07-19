@@ -1,5 +1,5 @@
 # lc-statements
-Lending Club statement fetcher that writes to Google Sheets. 
+Lending Club statement fetcher and Google Sheets writer. 
 
 Useful for fetching down your latest statement from lending club, then writing via api to your google spreadsheet. Intended to be setup with a cronjob or Heroku's scheduler.
 
