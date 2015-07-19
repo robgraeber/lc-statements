@@ -7,6 +7,9 @@
     "start": "node --harmony app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "0.12.x"
+  },
   "author": "Rob Graeber",
   "license": "ISC",
   "dependencies": {
