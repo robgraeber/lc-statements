@@ -3,11 +3,14 @@
 # Run this script daily and it will route to the other tasks
 
 MY_PATH=`dirname "$0"`
+echo Checking scheduler
 
 # Fetch statements every 15th of the month:
-if [ "$(date +%-d)" = 1 ]; then
+if [ "$(date +%-d)" = 15 ]; then
    npm start
 fi
+
+echo Finished checking
 
 
 # Examples:
