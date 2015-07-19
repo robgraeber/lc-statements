@@ -17,11 +17,11 @@ Promise.promisifyAll(Spreadsheet);
 
 Logger.info('Starting script');
 /**
- * Fetches the balance from the latest statement
- * @example fetchLCStatementBalance(6, 2015) // 6500.00
- * @returns {Promise} Successfully completed on resolve
+ * Fetches LendingClub balance + net deposits from latest statement
+ * @example fetchLCStatementInfo(6, 2015) // Promise => {balance: 6500.00, deposits: 500.00}
+ * @returns {Promise.<Object>} Rsp object with deposits and balance
  */
-const fetchLCStatementBalance = (month, year) => {
+const fetchLCStatementInfo = (month, year) => {
     const yearStr = year + '';
     const monthStr = month < 10 ? '0' + month : month + '';
     Logger.info('Fetching LC statement:', month+'-'+year);
@@ -62,7 +62,7 @@ const fetchLCStatementBalance = (month, year) => {
 /**
  * Updates your google spreadsheet w/ a new row
  * @example updateGoogleSheet('500', '5642.24') // success
- * @returns {Promise.<null>}
+ * @returns {Promise.<null>} Successfully completed on resolve
  */
 const updateGoogleSheet = (deposits, balance) => {
     Logger.info('Updating google sheet with:', deposits, balance);
@@ -102,7 +102,7 @@ date.setMonth(date.getMonth() - 1);
 const targetMonth = date.getMonth() + 1; //add 1 to make it 1-12
 const targetYear = date.getFullYear();
 
-fetchLCStatementBalance(targetMonth, targetYear).then(rsp => {
+fetchLCStatementInfo(targetMonth, targetYear).then(rsp => {
     return updateGoogleSheet(rsp.deposits, rsp.balance);
 }).then(() => {
     Logger.info('Spreadsheet updated!');
