@@ -1,0 +1,21 @@
+{
+  "name": "lc-statements",
+  "version": "1.0.0",
+  "description": "Lending Club statement fetcher that writes to Google Sheets",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --harmony app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rob Graeber",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^2.9.33",
+    "edit-google-spreadsheet": "^0.2.19",
+    "pdf2text": "^1.1.0",
+    "request-promise": "^0.4.2",
+    "sprintf-js": "^1.0.3",
+    "tough-cookie": "^2.0.0",
+    "winston2": "^1.0.3"
+  }
+}
