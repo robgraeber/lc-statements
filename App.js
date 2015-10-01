@@ -22,8 +22,6 @@ Logger.info('Starting script');
  * @returns {Promise.<Object>} Rsp object with deposits and balance
  */
 const fetchLCStatementInfo = (month, year) => {
-    const yearStr = year + '';
-    const monthStr = month < 10 ? '0' + month : month + '';
     Logger.info('Fetching LC statement:', month+'-'+year);
     return Request.post({
         url: 'https://www.lendingclub.com/account/login.action',
@@ -35,11 +33,14 @@ const fetchLCStatementInfo = (month, year) => {
     }).then(rsp => {
         Logger.info('LC login rsp:', rsp.trim().replace(/(\r\n|\n|\r)/gm,""));
         const urlTemplate = 'https://www.lendingclub.com/account/monthlyStatementDownload.action?file_extension=pdf&start_date_monthly_statements=YEAR-MONTH-01&attachmentName=Monthly_Statement_YEAR_MONTH.pdf';
+        const yearStr = year + '';
+        const monthStr = month < 10 ? '0' + month : month + '';
         return Request.get(urlTemplate.replace(/YEAR/g, yearStr).replace(/MONTH/g, monthStr));
     }).then(rsp => {
         Logger.info('LC pre-pdf rsp:', rsp);
-        const urlTemplate = 'https://www.lendingclub.com/account/downloadMonthlyStatement.action?file_extension=pdf&start_date_monthly_statements=YEAR-MONTH-01&attachmentName=Monthly_Statement_YEAR_MONTH.pdf'
-        return Request.get(urlTemplate.replace(/YEAR/g, yearStr).replace(/MONTH/g, monthStr), {
+        const url = 'https://www.lendingclub.com/account/downloadMonthlyStatement.action?'+JSON.parse(rsp).queryString;
+        Logger.info('LC pdf url:', url);
+        return Request.get(url, {
             encoding: null
         });
     }).then(pdfBuffer => {
