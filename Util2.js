@@ -3,7 +3,6 @@ const sprintf = require('sprintf-js').sprintf;
 const pdf2text = require('pdf2text');
 
 const Util2 = {};
-
 /**
  * Create a formatted string with placeholders:
  * % — yields a literal % character

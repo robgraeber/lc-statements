@@ -4,7 +4,7 @@
   "description": "Lending Club statement fetcher that writes to Google Sheets",
   "main": "app.js",
   "scripts": {
-    "start": "node --harmony app.js",
+    "start": "node --harmony App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

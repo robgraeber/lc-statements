@@ -1,9 +1,9 @@
 'use strict';
-const Util2 = require('./util2');
+const Util2 = require('./Util2');
 const Logger = require('winston2');
 const Promise = require('bluebird');
-const Constants = require('./constants');
-const SheetHelper = require('./sheetHelper');
+const Constants = require('./Constants');
+const SheetHelper = require('./SheetHelper');
 const Spreadsheet = require('edit-google-spreadsheet');
 const RequestLib = require('request-promise');
 const Request = RequestLib.defaults({
