@@ -110,4 +110,5 @@ fetchLCStatementInfo(targetMonth, targetYear).then(rsp => {
     Logger.info('Great success!');
 }).error(err => {
     Logger.error('Err:', err);
+    process.exit(1);
 });
